@@ -1,0 +1,21 @@
+<h3>This is Empolyee Details</h3>
+<table border="2" width="200">
+        <tr>
+          <th>EmpName</th>
+          <th>Designation</th>
+          <th>Mobile</th>
+          <th>Email</th>
+          <th>Location</th>
+          <th>Manager</th>
+        </tr>
+        <tr *ngFor="let item of emps">
+          <td>{{item.ename | titlecase}}</td>
+          <td>{{item.desig | uppercase}}</td>
+          <td>{{item.mob}}</td>
+          <td>{{item.email | lowercase}}</td>
+          <td>{{item.loc | uppercase}}</td>
+          <td>
+          <a (click)="gointo(item.mgrname)" href="#">{{item.mgrname}}</a></td>
+        </tr>
+    </table>
+    
