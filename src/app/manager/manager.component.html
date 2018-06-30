@@ -1,22 +1,77 @@
 <h3>This is manager page</h3>
 
+<input type="button" value="Details" (click)="fun1()"/> | 
+<input type="button" value="Employe List" (click)="fun2()"><br><br><br>
 
-Manager Details:<input type="checkbox" value="Details" [(ngModel)]="x"/> | 
-
-Employee List:<input type="checkbox" value="Employee List"/><br><br><br>
-
-
-<table border="2" width="200" [hidden]="x">
+<table border="2" width="200" *ngIf="!isHide1">
     <tr>
       <th>ManagerName</th>
       <th>MobileNo</th>
       <th>Email</th>
       <th>Location</th>
     </tr>
-    <tr *ngFor="let item of mgrs">
+    <tr *ngFor="let item of obj1.mgrs">
       <td>{{item.mgname | titlecase}}</td>
       <td>{{item.email | uppercase}}</td>
       <td>{{item.mob}}</td>
       <td>{{item.loc | uppercase}}</td>
     </tr>
+</table><br><br>
+
+<!--Following code for employee list mapping with manager-->
+<div *ngIf="!isHide2">
+  <h3>This is Empolyee List</h3>
+<table border="2" width="200" *ngIf="!isHide2">
+        <tr>
+          <th>EmpName</th>                  
+          <th>Manager</th>
+        </tr>
+        <tr *ngFor="let item of obj1.emps">
+          <td>{{item.ename | titlecase}}</td>
+          <td>
+          <a (click)="fun4()" href="#">{{item.mgrname}}</a></td>
+        </tr>
+    </table>
+    </div>
+    <br><br>
+    
+<!--Following code is for editting purpose-->
+<table border="2" width="200" *ngIf="!isHide3">
+    <tr>
+      <th>EmpName</th>
+      <th>Designation</th>
+      <th>Mobile</th>
+      <th>Email</th>
+      <th>Location</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let item of obj1.emps">
+          
+      <td>
+          <input type="text" [(ngModel)]="item.ename" [disabled]="!item.isEditable"/>
+        </td>
+      
+      <td>
+          <input type="text" [(ngModel)]="item.desig" [disabled]="!item.isEditable"/>
+        </td>
+      
+      <td>
+          <input type="text" [(ngModel)]="item.mob" [disabled]="!item.isEditable"/>
+        </td>
+      
+      <td>
+          <input type="text" [(ngModel)]="item.email" [disabled]="!item.isEditable"/>
+        </td>
+      
+      <td>
+          <input type="text" [(ngModel)]="item.loc" [disabled]="!item.isEditable"/>
+        </td>
+      
+
+      <td>
+          <button (click)="item.isEditable=!item.isEditable" *ngIf="!item.isEditable">Edit</button>
+          <button *ngIf="item.isEditable" (click)="item.isEditable=!item.isEditable">Save</button>         
+       </td>
+    </tr>
 </table>
+

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import { ManagerComponent } from './manager/manager.component';
 import { EmployeeComponent } from './employee/employee.component';
+import{DataService} from './service/data.service';
 
 const appRoutes:Routes=[
   
@@ -21,7 +22,7 @@ const appRoutes:Routes=[
   imports: [
     BrowserModule,RouterModule.forRoot(appRoutes),FormsModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
